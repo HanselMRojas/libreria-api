@@ -26,7 +26,7 @@ export async function listarLibros (req: Request, res: Response, next: NextFunct
       mongoQuery,
       select,
       cursor
-    ).populate('autor')
+    ).populate('autores')
 
     res.status(200).json({
       libros
