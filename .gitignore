@@ -1,0 +1,10 @@
+/npm-debug.log
+/node_modules/
+/dist/
+/logs/*
+debug.log
+**/*.env
+keys/*.json
+keys/*.pem
+keys/*.crt
+keys/*.key

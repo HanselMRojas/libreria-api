@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mongo_dev:
+    container_name: mongo_db_dev
+    image: mongo:latest
+    ports:
+      - 127.0.0.1:27017:27017
+    volumes:
+      - mongo_data_dev:/data/db
+volumes:
+  mongo_data_dev:
