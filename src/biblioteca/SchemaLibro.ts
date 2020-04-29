@@ -9,6 +9,7 @@ export interface ILibro extends Document {
   autores: IAutor['_id']
   esPublico: boolean
   titulo: string
+  subtitulo: string
   descricion: string
   isbn: string
   numeroPaginas: number
@@ -33,6 +34,11 @@ const LibroSchema: Schema = new Schema({
     default: true
   },
   titulo: {
+    type: String,
+    trim: true,
+    requited: true
+  },
+  subtitulo: {
     type: String,
     trim: true,
     requited: true
@@ -63,6 +69,6 @@ const LibroSchema: Schema = new Schema({
   versionKey: false
 })
 
-LibroSchema.plugin(require('mongoose-keywords'), { paths: ['titulo', 'descripcion', 'isbn', 'fechaPublicacion'] })
+LibroSchema.plugin(require('mongoose-keywords'), { paths: ['titulo', 'descripcion', 'isbn', 'subtitulo', 'fechaPublicacion'] })
 
 export default mongoose.model<ILibro>('Libro', LibroSchema)

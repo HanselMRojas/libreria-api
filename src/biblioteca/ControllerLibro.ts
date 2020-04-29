@@ -17,7 +17,6 @@ export async function listarLibros (req: Request, res: Response, next: NextFunct
     let { query, select, cursor } = req.querymen
 
     const mongoQuery = {
-      esPublico: true,
       '__m.borrado': false,
       ...query
     }
@@ -26,7 +25,7 @@ export async function listarLibros (req: Request, res: Response, next: NextFunct
       mongoQuery,
       select,
       cursor
-    ).populate('autor')
+    ).populate('autores')
 
     res.status(200).json({
       libros
