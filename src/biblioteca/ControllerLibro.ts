@@ -138,6 +138,66 @@ export async function editarLibro (req: Request, res: Response, next: NextFuncti
 }
 
 /**
+ * Editar Counters Libro
+ * Este endpoint edita un libro dado su Id
+ * 
+ * @method POST
+ * @role ADMIN
+ */
+export async function editarCounters (req: Request, res: Response, next: NextFunction) {
+  try {
+    let { body, params, sesion } = req
+    const usuario = sesion.usuario._id
+
+    let libro = await Libro.findOne({
+      id: params.libroId,
+      '__m.borrado': false
+    })
+
+    if (libro) {
+      let favoritos = libro.favoritos
+      let reservas = libro.reservas
+
+      if (body.favorito) {
+        if (libro.favoritos.includes(usuario)) {
+          favoritos = libro.favoritos.filter((idFavorito: any) => {
+            return !usuario === idFavorito
+          })
+
+        } else {
+          favoritos = favoritos.concat(usuario)
+        }
+      }
+
+      if (body.reserva) {
+        if (libro.reservas.includes(usuario)) {
+          reservas = libro.reservas.filter((idReserva: any) => {
+            return !usuario === idReserva
+          })
+        } else {
+          reservas = reservas.concat(usuario)
+        }
+      }
+
+      libro.favoritos = favoritos
+      libro.reservas = reservas
+
+      await libro.save()
+
+      res.status(201).json({
+        libro: libro
+      })
+    } else {
+      res.status(404).json({
+        mensaje: 'El libro solicitado no ha sido encontrado'
+      })
+    }
+  } catch (error) {
+    next({ estado: 500, original: error })
+  }
+}
+
+/**
  * Eliminar Libro
  * Este endpoint elimina un libro dado su Id
  * 

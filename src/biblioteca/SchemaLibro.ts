@@ -1,12 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose'
 import SchemaGeneral, { ISchemaGeneral } from '../servidor/SchemaGeneral'
 import { IAutor } from './SchemaAutor'
+import { ICuenta } from '../autenticacion/SchemaCuenta'
 
 const uuid = require('uuid-base62')
 
 export interface ILibro extends Document {
   id: string
   autores: IAutor['_id']
+  favoritos: ICuenta['_id']
+  reservas: ICuenta['_id']
   esPublico: boolean
   titulo: string
   subtitulo: string
@@ -27,6 +30,14 @@ const LibroSchema: Schema = new Schema({
   autores: [{
     type: Schema.Types.ObjectId,
     ref: 'Autor'
+  }],
+  favoritos: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Cuenta'
+  }],
+  reservas: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Cuenta'
   }],
   // Schema
   esPublico: {

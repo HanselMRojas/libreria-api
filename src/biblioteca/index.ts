@@ -5,6 +5,7 @@ import {
   detalleLibro,
   crearLibro,
   editarLibro,
+  editarCounters,
   eliminarLibro
 } from './ControllerLibro'
 
@@ -42,6 +43,11 @@ BibliotecaRouter.post('/libros/:libroId', [
   JWTMiddleware,
   AdminMiddleware
 ], editarLibro)
+
+BibliotecaRouter.post('/libros/:libroId/counters', [
+  JWTMiddleware,
+  AdminMiddleware
+], editarCounters)
 
 BibliotecaRouter.delete('/libros/:libroId', [
   JWTMiddleware,
