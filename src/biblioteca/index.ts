@@ -45,8 +45,7 @@ BibliotecaRouter.post('/libros/:libroId', [
 ], editarLibro)
 
 BibliotecaRouter.post('/libros/:libroId/counters', [
-  JWTMiddleware,
-  AdminMiddleware
+  JWTMiddleware
 ], editarCounters)
 
 BibliotecaRouter.delete('/libros/:libroId', [

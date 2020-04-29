@@ -152,7 +152,7 @@ export async function editarCounters (req: Request, res: Response, next: NextFun
     let libro = await Libro.findOne({
       id: params.libroId,
       '__m.borrado': false
-    })
+    }).populate('autores')
 
     if (libro) {
       let favoritos = libro.favoritos
@@ -163,7 +163,6 @@ export async function editarCounters (req: Request, res: Response, next: NextFun
           favoritos = libro.favoritos.filter((idFavorito: any) => {
             return !usuario === idFavorito
           })
-
         } else {
           favoritos = favoritos.concat(usuario)
         }
