@@ -56,7 +56,8 @@
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test jest --detectOpenHandles --watch .",
     "start": "node ./dist/src/__bin__/run.js",
-    "build": "tsc"
+    "build": "tsc",
+    "docker-bp": "docker build -t registry.gitlab.com/hansel-m-rojas/libreria/libreria-api . && docker push registry.gitlab.com/hansel-m-rojas/libreria/libreria-api"
   },
   "jest": {
     "moduleFileExtensions": [

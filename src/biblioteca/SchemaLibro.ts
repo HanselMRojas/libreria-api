@@ -71,4 +71,8 @@ const LibroSchema: Schema = new Schema({
 
 LibroSchema.plugin(require('mongoose-keywords'), { paths: ['titulo', 'descripcion', 'isbn', 'subtitulo', 'fechaPublicacion'] })
 
+LibroSchema.virtual('urlImagen').get(function (this: ILibro): string {
+  return `https://libreriadelassombras.s3-sa-east-1.amazonaws.com/${this.id}.png`
+})
+
 export default mongoose.model<ILibro>('Libro', LibroSchema)
