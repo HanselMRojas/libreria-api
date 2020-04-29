@@ -60,7 +60,7 @@ export class ServerConfig implements IServerConfig {
       auth: Boolean(process.env.MONGO_DB_AUTH_FLAG) || false,
       host: process.env.MONGO_DB_HOST || 'mongo',
       port: process.env.MONGO_DB_PORT || 27017,
-      db: process.env.MONGO_DB_NAME || 'agente',
+      db: process.env.MONGO_DB_NAME || 'libreria',
       username: process.env.MONGO_DB_USER || null,
       password: process.env.MONGO_DB_PASS || null
     }
