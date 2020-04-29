@@ -41,8 +41,18 @@ Los endpoints que tiene este API a la fecha son se describen en la siguiente tab
 | Biblioteca    | /v1/biblioteca/libros/:libroId   | JWT, Admin | POST    | Edita un libro      |
 | Biblioteca    | /v1/biblioteca/libros/:libroId   | JWT, Admin | DELETE  | Borra un libro      |
 | Biblioteca    | /v1/biblioteca/libros/:libroId/counters | JWT, Admin | POST  | Actualiza lines y reserva un libro |
-| Biblioteca    | /v1/biblioteca/autores            | --         | GET     | Lista los autor disponibles |
+| Biblioteca    | /v1/biblioteca/autores            | --         | GET     | Lista los autores disponibles |
 | Biblioteca    | /v1/biblioteca/autores            | JWT, Admin | POST    | Crea un nuevo autor |
 | Biblioteca    | /v1/biblioteca/autores/:autorId   | JWT, Admin | GET     | Detalla un autor    |
 | Biblioteca    | /v1/biblioteca/autores/:autorId   | JWT, Admin | POST    | Edita un autor      |
 | Biblioteca    | /v1/biblioteca/autores/:autorId   | JWT, Admin | DELETE  | Borra un autor      |
+
+## Notas
+Tener en cuenta que todas las rutas que sea GET con tipo de accion listar todos los elementos de una entidad. Cuentan con los siguientes `query_parameters`:
+
+* **q**: Búsqueda basada en keywords y expresiones regulares, ej: 
+* **sort**: Organizar la lista teniendo en cuenta algun campo del modelo de la entidad, ej: `?sort=nombre` o `?sort=-nombre`.
+* **limit**: Determinar limite de documentos por página en que query. Ej: `?limit=99`. Debe estar entre un lìmite de 1 y 99. Por defecto es 30.
+* **page**: Página actual del cursor en query. Este toma en cuenta el límite por página establecido y el total de registro, ej: `?page=1`
+* **select**: Selecciona los campos indicados del modelo de una entidad. Puede ser una lista separada por comma, ej: `?select=titulo,subtitulo,autores`
+
