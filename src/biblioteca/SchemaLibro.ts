@@ -69,6 +69,6 @@ const LibroSchema: Schema = new Schema({
   versionKey: false
 })
 
-LibroSchema.plugin(require('mongoose-keywords'), { paths: ['titulo', 'descripcion', 'isbn', 'fechaPublicacion'] })
+LibroSchema.plugin(require('mongoose-keywords'), { paths: ['titulo', 'descripcion', 'isbn', 'subtitulo', 'fechaPublicacion'] })
 
 export default mongoose.model<ILibro>('Libro', LibroSchema)
